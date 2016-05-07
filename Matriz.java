@@ -6,6 +6,7 @@ public class Matriz {
 	protected double[][] matriz;
 	private Integer i;
 	private Integer j;
+	private Double errorCalculado;
 	
 	public Matriz(Integer i, Integer j){
 		this.matriz= new double[i][j];
@@ -15,6 +16,23 @@ public class Matriz {
 	
 	public void agregar(int i, int j, double dato){
 		this.matriz[i][j]=dato;
+	}
+	
+	public double[] getFila(int i) {
+		return matriz[i];
+	}
+	
+	public void setFila(int i, double[] fila) {
+		matriz[i] = fila;
+		
+	}
+	
+	public double obtenerValorFilaColumna(int i, int j) {
+		return matriz[i][j];
+	}
+	
+	public void setValorFilaColumna(int i, int j, double valor) {
+		this.matriz[i][j] = valor;
 	}
 	
 	//metodos sumar overrideados
@@ -255,6 +273,7 @@ public class Matriz {
 			//Arrojar excepcion
 			System.out.println("La matriz debe ser cuadrada.");
 		}
+		this.errorCalculado=original.normaDos()-inversa.normaDos();
 		return inversa;
 	}
 	
@@ -330,6 +349,8 @@ public class Matriz {
 			}
 			cadena+="|\n";
 		}
+		if (this.errorCalculado!=null)
+			cadena+="Error= "+this.errorCalculado;
 		return cadena;
 	}
 	
