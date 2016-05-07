@@ -101,37 +101,39 @@ matriz.agregar(0, 0, 1.0);
 		System.out.println(matriz9.normaDos());
 
 		System.out.println(matriz9.producto(2.0).toString());
-
-        SEL sel = null;
-		File file= new File("input.in");
-		FileReader fr = null;
-		BufferedReader br;
 		
 		Calendar tIni = new GregorianCalendar();
-		
+        SEL sel = null;
+        Matriz matriz11 = null;
+		Vector vector11= null;
+		File file= new File("/home/matias/workspace/Sistema de Ecuaciones Lineales Beta/src/ar/edu/uno/poo2/resources/in/input.in");
+		FileReader fr = null;
+		BufferedReader br;
+
 		try{
 			fr= new FileReader(file);
 			br= new BufferedReader(fr);
 			StringTokenizer linea= new StringTokenizer(br.readLine());
 			int fila= Integer.parseInt(linea.nextToken());
-			sel= new SEL(fila);
-			//matriz11= new Matriz(fila,columna);
+			int columna= Integer.parseInt(linea.nextToken());
+			matriz11= new Matriz(fila,columna);
+			vector11= new Vector(fila);
 			double valor;
-			for (int i=0; i<sel.getI(); i++){
+			for (int i=0; i<matriz11.getI(); i++){
 				linea= new StringTokenizer(br.readLine());
-				for (int j=0; j<sel.getI(); j++){
+				for (int j=0; j<matriz11.getI(); j++){
 					valor=Double.parseDouble(linea.nextToken());
-					sel.agregar(i, j, valor);
+					matriz11.agregar(i, j, valor);
 				}
 			}
-			//System.out.println(matriz11.toString());
 			linea= new StringTokenizer(br.readLine());
-			for (int j=0; j<sel.getI(); j++){
+			for (int j=0; j<matriz11.getI(); j++){
 				valor=Double.parseDouble(linea.nextToken());
-				//sel.agregar(valor); //Aca se carga el vector. Hay que adaptarlo
+				vector11.agregar(valor);
 			}
+			System.out.println("Matriz11\n"+matriz11.toString());
 		}catch (Exception e){
-			System.out.println(e.getStackTrace());
+			System.out.println("No se enpudo abrir "+file.getAbsolutePath()+"\n"+e.getStackTrace());
 		}finally{try{                    
 			if( null != fr ){   
 				fr.close();     
@@ -142,15 +144,16 @@ matriz.agregar(0, 0, 1.0);
 		}
 		try{
 			System.out.println("Matriz inversa");
-			System.out.println(sel.matrizInversa().toString());
+			System.out.println(matriz11.matrizInversa().toString());
 		}catch (Exception e){
 			System.out.println(e.toString());
 		}
+		
 		System.out.println(sel.toString());
 		System.out.println(sel.determinante());
 		
 		System.out.println(sel.matrizInversa().toString());
-		
+		System.out.println(SEL.resolverSistema(matriz11.matriz, vector.matriz));
 		Calendar tFin = new GregorianCalendar();
 
 		long diff = tFin.getTimeInMillis()-tIni.getTimeInMillis();
