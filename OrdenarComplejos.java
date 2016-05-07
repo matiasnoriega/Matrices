@@ -100,11 +100,5 @@ public class OrdenarComplejos {
 		return null;
 	}
 	
-	/*public ArrayList<Complejo> ordenarPorReal(boolean asc) {
-		
-	}
-	
-	public ArrayList<Complejo> ordenarPorImaginario(boolean asc) {
-		
-	}*/
+
 }
