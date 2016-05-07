@@ -101,8 +101,8 @@ matriz.agregar(0, 0, 1.0);
 
 		System.out.println(matriz9.producto(2.0).toString());
 
-        Matriz matriz11 = null;
-		File file= new File("/home/matias/workspace/Sistema de Ecuaciones Lineales Beta/src/ar/edu/uno/poo2/resources/in/input.in");
+        SEL sel = null;
+		File file= new File("input.in");
 		FileReader fr = null;
 		BufferedReader br;
 
@@ -111,17 +111,22 @@ matriz.agregar(0, 0, 1.0);
 			br= new BufferedReader(fr);
 			StringTokenizer linea= new StringTokenizer(br.readLine());
 			int fila= Integer.parseInt(linea.nextToken());
-			int columna= Integer.parseInt(linea.nextToken());
-			matriz11= new Matriz(fila,columna);
+			sel= new SEL(fila);
+			//matriz11= new Matriz(fila,columna);
 			double valor;
-			for (int i=0; i<matriz11.getI(); i++){
+			for (int i=0; i<sel.getI(); i++){
 				linea= new StringTokenizer(br.readLine());
-				for (int j=0; j<matriz11.getI(); j++){
+				for (int j=0; j<sel.getI(); j++){
 					valor=Double.parseDouble(linea.nextToken());
-					matriz11.agregar(i, j, valor);
+					sel.agregar(i, j, valor);
 				}
 			}
 			//System.out.println(matriz11.toString());
+			linea= new StringTokenizer(br.readLine());
+			for (int j=0; j<sel.getI(); j++){
+				valor=Double.parseDouble(linea.nextToken());
+				sel.agregar(valor); //Aca se carga el vector. Hay que adaptarlo
+			}
 		}catch (Exception e){
 			System.out.println(e.getStackTrace());
 		}finally{try{                    
@@ -134,14 +139,14 @@ matriz.agregar(0, 0, 1.0);
 		}
 		try{
 			System.out.println("Matriz inversa");
-			System.out.println(matriz11.matrizInversa().toString());
+			System.out.println(sel.matrizInversa().toString());
 		}catch (Exception e){
 			System.out.println(e.toString());
 		}
-		System.out.println(matriz11.toString());
-		System.out.println(matriz11.determinante());
+		System.out.println(sel.toString());
+		System.out.println(sel.determinante());
 		
-		System.out.println(matriz2.matrizInversa().toString());
+		System.out.println(sel.matrizInversa().toString());
 	}
 	
 
