@@ -103,7 +103,7 @@ matriz.agregar(0, 0, 1.0);
 		System.out.println(matriz9.producto(2.0).toString());
 		
 		Calendar tIni = new GregorianCalendar();
-        SEL sel = null;
+        
         Matriz matriz11 = null;
 		Vector vector11= null;
 		File file= new File("/home/matias/workspace/Sistema de Ecuaciones Lineales Beta/src/ar/edu/uno/poo2/resources/in/input.in");
@@ -153,7 +153,7 @@ matriz.agregar(0, 0, 1.0);
 		System.out.println(sel.determinante());
 		
 		System.out.println(sel.matrizInversa().toString());
-		System.out.println(SEL.resolverSistema(matriz11.matriz, vector.matriz));
+		System.out.println(SEL.resolverSistema(matriz11, vector));
 		Calendar tFin = new GregorianCalendar();
 
 		long diff = tFin.getTimeInMillis()-tIni.getTimeInMillis();
