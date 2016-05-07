@@ -6,6 +6,7 @@ public class Main {
 
 
 	public static void main (String[] args) throws MissMatchDimensionException, NoInversibleException{
+				
 		Vector vector= new Vector(3);
 		Vector vector1= new Vector(3);
 		Vector vector2=new Vector(3);
@@ -105,7 +106,9 @@ matriz.agregar(0, 0, 1.0);
 		File file= new File("input.in");
 		FileReader fr = null;
 		BufferedReader br;
-
+		
+		Calendar tIni = new GregorianCalendar();
+		
 		try{
 			fr= new FileReader(file);
 			br= new BufferedReader(fr);
@@ -125,7 +128,7 @@ matriz.agregar(0, 0, 1.0);
 			linea= new StringTokenizer(br.readLine());
 			for (int j=0; j<sel.getI(); j++){
 				valor=Double.parseDouble(linea.nextToken());
-				sel.agregar(valor); //Aca se carga el vector. Hay que adaptarlo
+				//sel.agregar(valor); //Aca se carga el vector. Hay que adaptarlo
 			}
 		}catch (Exception e){
 			System.out.println(e.getStackTrace());
@@ -147,6 +150,11 @@ matriz.agregar(0, 0, 1.0);
 		System.out.println(sel.determinante());
 		
 		System.out.println(sel.matrizInversa().toString());
+		
+		Calendar tFin = new GregorianCalendar();
+
+		long diff = tFin.getTimeInMillis()-tIni.getTimeInMillis();
+		System.out.println(diff);
 	}
 	
 
