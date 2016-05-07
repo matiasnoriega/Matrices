@@ -6,6 +6,21 @@ public class Vector extends Matriz{
 	public Vector(Integer dimension){
 		super(1, dimension);
 	}
+	
+	public static Vector getVectorFromArray(double[] array) {
+		Vector v = new Vector(array.length);
+		for (int i = 0; i < array.length; i++)
+			v.agregar(array[i]);
+		return v;
+	}
+	
+	public double getValorColumna(int col) {
+		return this.obtenerValorFilaColumna(0, col);
+	}
+	
+	public void setValorColumna(int col, double valor) {
+		this.setValorFilaColumna(0, col, valor);
+	}
 
 	public boolean agregar(Double valor){
 		if (ultimo < this.getJ()) {
